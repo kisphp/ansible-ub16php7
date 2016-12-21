@@ -1,0 +1,3 @@
+---
+- include: components/php{{ php_version }}.yml
+- include: components/xdebug{{ php_version }}.yml

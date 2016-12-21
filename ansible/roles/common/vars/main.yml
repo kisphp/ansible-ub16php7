@@ -1,0 +1,23 @@
+apt_useful_tools:
+  - curl
+  - vim
+  - mc
+  - tree
+  - htop
+  - zip
+  - unzip
+  - build-essential
+  - mcrypt
+
+python_apt_modules:
+  - python
+  - python-dev
+  - python-pip
+
+python_pip_modules:
+  - jinja2
+  - urllib3
+  - pyopenssl
+  - python-keyczar
+  - ndg-httpsclient
+  - pyasn1

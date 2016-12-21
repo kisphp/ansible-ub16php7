@@ -1,0 +1,12 @@
+---
+- name: "Clone repositories"
+  git:
+    repo="{{ item.repository }}"
+    dest="/home/{{ user }}/server/{{ item.directory }}"
+    clone=yes
+    update=no
+    accept_hostkey=yes
+  become: yes
+  become_user: "{{ user }}"
+  with_items: "{{ project }}"
+  ignore_errors: True

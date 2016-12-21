@@ -1,0 +1,15 @@
+---
+- name: "Deploy application"
+  git: repo={{ item.repository }} dest=/home/{{ user }}/server/{{ item.directory }} update=yes
+  become: yes
+  become_user: "{{ user }}"
+  with_items: "{{ project }}"
+
+- name: "Run build script"
+  shell: ./build.sh prod -i
+  args:
+    chdir: /home/{{ user }}/server/{{ item.directory }}
+    executable: /bin/bash
+  with_items: "{{ project }}"
+  become: yes
+  become_user: "{{ user }}"

@@ -1,0 +1,38 @@
+{%- if env_type == 'dev' and item.domain_local is defined and item.domain_local != '' -%}
+    {%- set domain_name = item.domain_local %}
+    {%- set server_ip = ansible_eth1.ipv4.address %}
+{%- else -%}
+    {%- set domain_name = item.domain %}
+    {%- set server_ip = ansible_eth0.ipv4.address %}
+{%- endif -%}
+server {
+    listen {{ nginx_port }};
+    listen [::]:{{ nginx_port }} ipv6only=on;
+
+    server_name www.{{ domain_name }} {{ domain_name }};
+
+    root /home/{{ user }}/server/{{ item.directory }}/web;
+
+    location / {
+        try_files $uri /index.php$is_args$args;
+    }
+
+    location ~ ^/(app_dev|config|index)\.php(/|$) {
+        fastcgi_pass unix:{% if php_version == 7 %}/var/run/php/php7.0-fpm.sock{% else %}/var/run/php5-fpm.sock{% endif %};
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+    }
+
+    error_log /home/{{ user }}/server/{{ item.directory }}/nginx-error.log;
+    access_log /home/{{ user }}/server/{{ item.directory }}/nginx-access.log;
+}
+
+server {
+    listen {{ nginx_port }};
+    server_name {{ server_ip }};
+
+    return 301 $scheme://www.{{ domain_name }}$request_uri;
+}

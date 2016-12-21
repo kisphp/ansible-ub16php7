@@ -1,0 +1,4 @@
+---
+- name: "Create user {{ user }}"
+  user: name={{ user }} comment="" shell=/bin/bash uid=1000 password={{ user_password }}
+  ignore_errors: True

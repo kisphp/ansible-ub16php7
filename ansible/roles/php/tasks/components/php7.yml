@@ -1,0 +1,44 @@
+---
+- name: "Add repository for PHP 7"
+  apt_repository: repo="ppa:ondrej/php" update_cache=yes
+
+- name: "Install apache support"
+  apt: name=libapache2-mod-php
+  when: webserver_name == 'apache2'
+
+- name: "Install PHP 7 packages"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items: "{{ php7_apt_modules }}"
+
+- name: "Generate PHP FPM pool.d config"
+  template:
+    src: "php7/fpm/pool.d/www.conf.j2"
+    dest: "/etc/php/7.0/fpm/pool.d/www.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: "Generate FPM PHP ini"
+  template:
+    src: "php7/fpm/php.ini.j2"
+    dest: "/etc/php/7.0/php.ini"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: "Make sure the socket file has the correct rights"
+  file:
+    path: /var/run/php/php7.0-fpm.sock
+    owner: "root"
+    group: "root"
+    mode: "o+rw"
+    force: "yes"
+  become: yes
+  become_method: "sudo"
+  when: webserver_name == "nginx"
+
+- name: "Restart php-fpm"
+  service: name={{ php7_fpm_service_name }} state=restarted
+  become: yes
+  become_method: "sudo"
+  when: webserver_name == "nginx"

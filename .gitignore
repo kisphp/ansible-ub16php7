@@ -1,0 +1,6 @@
+.vagrant/
+.idea/
+ansible/setup_server.retry
+server/*
+*.retry
+*.log

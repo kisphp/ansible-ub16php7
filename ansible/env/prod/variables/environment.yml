@@ -1,0 +1,60 @@
+---
+user: web
+# Password: mariusbogdan83
+user_password: "$6$UHpgO7aUxP1IW$pt9K0MShl6RWY5sVQ2ohVEWKyvF3eoaT.YYSbZJhIFQLkigwfchdMCOcZKXo9uYKOcnJMvlksl6beMzQSoWDA."
+# To generate a new password for the user run this command
+# mkpasswd password_here --method=sha-512
+
+env_type: prod
+
+# php xdebug settings
+php_xdebug_enabled: False
+
+server_timezone: Europe/Bucharest
+
+#  ini_path: php5/php.ini
+php_xdebug_enabled: False
+php_xdebug_idekey: PHPSTORM
+php_xdebug_remote_enable: 0
+php_xdebug_remote_autostart: 0
+php_xdebug_profiler_enable: 0
+php_xdebug_remote_connect_back: 0
+
+mysql_settings_only_local_connections: True
+mysql_settings_max_allowed_packet: 256M
+mysql_settings_host_connect: "localhost"
+mysql_enable_mysql_log: False
+
+mysql_db_host: localhost
+mysql_db_user: cashordigital_u53r
+mysql_db_pass: mariusbogdan83
+mysql_db_name: cashordigital_main
+
+crontab:
+  - {
+    name: "mail to section",
+    minute: "MAILTO={{ cron_mail_to }}",
+    hour: "",
+    day: "",
+    month: "",
+    weekday: "",
+    job: ""
+  }
+  - {
+    name: "Periodic backup",
+    minute: "0",
+    hour: "19",
+    day: "*",
+    month: "*",
+    weekday: "1,4",
+    job: "/bin/bash /home/web/server/git.global.bkp.sh"
+  }
+  - {
+    name: "Trigger newsletter send",
+    minute: "0",
+    hour: "*",
+    day: "*",
+    month: "*",
+    weekday: "*",
+    job: "/usr/bin/php /home/web/psihologiecuantica.ro/app/console nl:send"
+  }

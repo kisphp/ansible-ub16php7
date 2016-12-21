@@ -1,0 +1,30 @@
+---
+- name: "Copy backup script"
+  template:
+    src="git.global.bkp.sh"
+    dest="/home/{{ user }}/server/git.global.bkp.sh"
+    owner={{ user }}
+    group={{ user }}
+    mode=0744
+  when:
+    - cron_mail_to != None
+    - crontab != None
+
+- name: "Clean crons"
+  become: yes
+  become_user: "{{ user }}"
+  shell: "crontab -r"
+  when:
+    - cron_mail_to != None
+    - crontab != None
+  ignore_errors: true
+
+- name: "Set cronjobs"
+  become: yes
+  become_user: "{{ user }}"
+  cron: name="{{ item.name }}" minute="{{ item.minute }}" hour="{{ item.hour }}" day="{{ item.day }}" month="{{ item.month }}" weekday="{{ item.weekday }}" job="{{ item.job }}"
+  with_items:
+    - "{{ crontab }}"
+  when:
+    - cron_mail_to != None
+    - crontab != None

@@ -1,0 +1,70 @@
+php5_apt_modules:
+  - php5.6-cli
+  - php5.6-common
+  - php5.6-gd
+  - php5.6-fpm
+  - php5.6-mysql
+  - php5.6-imap
+  - php5.6-cgi
+  - php-pear
+  - php-auth
+  - mcrypt
+  - php5.6-mcrypt
+  - php5.6-curl
+  - php5.6-intl
+  - php5.6-sqlite3
+  - php5.6-tidy
+  - php5.6-xmlrpc
+  - php5.6-xsl
+  - php5.6-xdebug
+  - snmp
+  - phpunit
+
+php5_fpm_service_name: "php5.6-fpm"
+php7_fpm_service_name: "php7.0-fpm"
+
+php7_apt_modules:
+  - php7.0
+  - php7.0-common
+  - php7.0-gd
+  - php7.0-fpm
+  - php7.0-mysql
+  - php7.0-imap
+  - php7.0-cgi
+  - php-pear
+  - php-auth
+  - php7.0-mcrypt
+  - php7.0-curl
+  - php7.0-intl
+  - php7.0-tidy
+  - php7.0-xmlrpc
+  - php7.0-xsl
+  - php7.0-xdebug
+  - snmp
+  - phpunit
+
+php_ini_fpm_short_open_tag: Off
+php_ini_fpm_asp_tags: Off
+php_ini_fpm_max_execution_time: 30
+php_ini_fpm_max_input_time: 30
+php_ini_fpm_memory_limit: 128M
+php_ini_fpm_display_errors: Off
+php_ini_fpm_post_max_size: 8M
+php_ini_fpm_upload_max_filesize: 100M
+php_ini_fpm_max_file_uploads: 10
+php_ini_fpm_allow_url_fopen: Off
+php_ini_fpm_allow_url_include: Off
+
+php_ini_cli_short_open_tag: Off
+php_ini_cli_asp_tags: Off
+php_ini_cli_max_execution_time: 30
+php_ini_cli_max_input_time: 30
+php_ini_cli_memory_limit: -1
+php_ini_cli_display_errors: Off
+php_ini_cli_post_max_size: 8M
+php_ini_cli_upload_max_filesize: 2M
+php_ini_cli_max_file_uploads: 20
+php_ini_cli_allow_url_fopen: On
+php_ini_cli_allow_url_include: Off
+
+

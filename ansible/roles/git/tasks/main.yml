@@ -1,0 +1,10 @@
+- name: "Install git"
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - git
+    - git-core
+
+- name: "Git config push simple"
+  git_config: name=push.default value=simple scope=global
+  become: yes
+  become_user: "{{ user }}"

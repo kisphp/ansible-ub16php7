@@ -1,0 +1,19 @@
+---
+  - hosts: all
+    become: yes
+    become_method: sudo
+    vars_files:
+      - "{{ inventory_dir }}/variables/environment.yml"
+    pre_tasks:
+      - name: update apt cache
+        apt: update_cache=yes
+
+    roles:
+      - system
+      - general
+      - frontend
+      - webserver
+      - database
+      - project
+#      - assets
+#      - crons

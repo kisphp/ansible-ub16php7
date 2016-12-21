@@ -1,0 +1,11 @@
+---
+- hosts: web
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - group_vars/all.yml
+    - "{{ inventory_dir }}/variables/environment.yml"
+
+  roles:
+    - deploy

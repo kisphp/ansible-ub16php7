@@ -1,0 +1,42 @@
+---
+- name: "Add repository for PHP 5.6"
+  apt_repository: repo="ppa:ondrej/php" update_cache=yes
+
+- name: "Install PHP packages"
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items: "{{ php5_apt_modules }}"
+
+- name: "Set php alternatives link"
+  file: src=/usr/bin/php5.6 path=/etc/alternatives/php state=link owner=root group=root
+
+- name: "Generate CLI php.ini"
+  template:
+    src: php5/php.cli.ini.j2
+    dest: "/etc/php/5.6/cli/php.ini"
+    owner: "root"
+    group: "root"
+    mode: 0644
+
+- name: "Generate FPM php.ini"
+  template:
+    src: php5/fpm/php.ini.j2
+    dest: "/etc/php/5.6/fpm/php.ini"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  when: webserver_name == "nginx"
+
+- name: "Generate PHP FPM pool.d config"
+  template:
+    src: php5/fpm/pool.d/www.conf.j2
+    dest: "/etc/php/5.6/fpm/pool.d/www.conf"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  when: webserver_name == "nginx"
+
+- name: "Restart php-fpm"
+  service: name={{ php5_fpm_service_name }} state=restarted
+  become: yes
+  become_method: "sudo"
+  when: webserver_name == "nginx"

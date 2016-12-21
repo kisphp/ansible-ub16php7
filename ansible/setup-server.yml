@@ -1,0 +1,28 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - group_vars/all.yml
+    - "{{ inventory_dir }}/variables/environment.yml"
+
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+
+  roles:
+    - { role: system }
+    - { role: common }
+    - { role: git }
+    - { role: ntp-timezone }
+    - { role: ssh }
+    - { role: oh-my-zsh }
+    - { role: crons }
+    - { role: nodejs }
+    - { role: php }
+    - { role: kisphp }
+    - { role: redis }
+    - { role: "{{ webserver_name }}" }
+    - { role: mysql }
+    - { role: project }

@@ -1,0 +1,21 @@
+---
+- name: "Create site vhost for domains"
+  become: yes
+  become_method: "sudo"
+  template:
+    src="nginx/site.conf.j2"
+    dest="/etc/nginx/sites-available/{{ item.domain }}"
+    owner=root
+    mode=0644
+  with_items: "{{ project }}"
+  notify:
+    - reload nginx
+
+- name: "Create vhost symlink"
+  file:
+    src="/etc/nginx/sites-available/{{ item.domain }}"
+    dest="/etc/nginx/sites-enabled/{{ item.domain }}"
+    state=link
+  with_items: "{{ project }}"
+  notify:
+    - reload nginx

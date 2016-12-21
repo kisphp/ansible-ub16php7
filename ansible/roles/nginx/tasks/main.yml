@@ -1,0 +1,15 @@
+---
+- name: "Install nginx"
+  apt: name=nginx update_cache=yes state=latest
+
+- name: "Uninstall Apache server"
+  apt: name=apache2 state=absent
+  notify:
+    - reload nginx
+
+- name: "Remove default virtual host"
+  file:
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+  notify:
+    - reload nginx
