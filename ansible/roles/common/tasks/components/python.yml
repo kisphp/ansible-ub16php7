@@ -1,11 +1,9 @@
-- name: "Setup PPA for python >= 2.7.9"
-  become: yes
-  apt_repository:
-    repo: "ppa:fkrull/deadsnakes-python2.7"
-
 - name: "Install python apt modules"
   apt: name={{ item }} update_cache=yes
   with_items: "{{ python_apt_modules }}"
+
+- name: "Upgrade python pip"
+  pip: name=pip version=9.*
 
 - name: "Install Python PIP modules"
   pip: name={{ item }}
