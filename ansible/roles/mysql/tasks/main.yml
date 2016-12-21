@@ -6,17 +6,17 @@
   become_method: "sudo"
   with_items: "{{ mysql_apt_modules }}"
 
-- name: "MySQL | create MySQL configuration file"
-  become: yes
-  become_method: "sudo"
-  template:
-    src=my.cnf.j2
-    dest=/etc/mysql/my.cnf
-    backup=yes
-    owner=root
-    group=root
-    mode=0644
-    force=yes
+#- name: "MySQL | create MySQL configuration file"
+#  become: yes
+#  become_method: "sudo"
+#  template:
+#    src=my.cnf.j2
+#    dest=/etc/mysql/my.cnf
+#    backup=yes
+#    owner=root
+#    group=root
+#    mode=0644
+#    force=yes
 
 - name: "Create {{ mysql_db_user }} user"
   mysql_user:
@@ -38,32 +38,24 @@
     login_password={{ mysql_db_pass }}
   ignore_errors: True
 
-- name: "MySQL | Remove the MySQL test database"
-  mysql_db:
-    db=test
-    state=absent
-    login_user={{ mysql_db_user }}
-    login_password={{ mysql_db_pass }}
-  ignore_errors: True
-
-# MySQL database setup, this does the equivalent of mysql_secure_installation.
-#- name: "MySQL | Change root password."
-#  mysql_user: name=root password={{ mysql_db_pass }} host={{ item }}
-#  become: yes
-#  become_method: "sudo"
-#  with_items: "{{ mysql_settings_no_root_hosts }}"
+#- name: "MySQL | Remove the MySQL test database"
+#  mysql_db:
+#    db=test
+#    state=absent
+#    login_user={{ mysql_db_user }}
+#    login_password={{ mysql_db_pass }}
 #  ignore_errors: True
 
-- name: "Remove all root users"
-  mysql_user:
-    name=root
-    host_all=yes
-    state=absent
-  ignore_errors: True
+#- name: "Remove all root users"
+#  mysql_user:
+#    name=root
+#    host_all=yes
+#    state=absent
+#  ignore_errors: True
 
-- name: "MySQL | restart mysql"
-  service:
-    name=mysql
-    state=restarted
-  become: yes
-  become_method: "sudo"
+#- name: "MySQL | restart mysql"
+#  service:
+#    name=mysql
+#    state=restarted
+#  become: yes
+#  become_method: "sudo"

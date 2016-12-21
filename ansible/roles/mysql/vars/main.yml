@@ -1,7 +1,7 @@
 mysql_apt_modules:
-  - mysql-client-5.6
-  - mysql-server-5.6
-  - mysql-common-5.6
+  - mysql-client
+  - mysql-server
+  - mysql-common
   - python-mysqldb
 
 mysql_port: 3306
