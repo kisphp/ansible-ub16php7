@@ -15,7 +15,7 @@ server {
         try_files $uri /index.php$is_args$args;
     }
 
-    location ~ ^/(app_dev|config|index)\.php(/|$) {
+    location ~ ^/(index|app|app_dev|default)\.php(/|$) {
         fastcgi_pass unix:{% if php_version == 7 %}/var/run/php/php7.0-fpm.sock{% else %}/var/run/php5-fpm.sock{% endif %};
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;

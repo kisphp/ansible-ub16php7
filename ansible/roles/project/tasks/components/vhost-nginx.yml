@@ -10,6 +10,7 @@
   with_items: "{{ project }}"
   notify:
     - reload nginx
+    - reload php7-fpm
 
 - name: "Create vhost symlink"
   file:
@@ -19,3 +20,4 @@
   with_items: "{{ project }}"
   notify:
     - reload nginx
+    - reload php7-fpm
