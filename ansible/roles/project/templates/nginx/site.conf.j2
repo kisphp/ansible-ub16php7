@@ -1,9 +1,7 @@
 {%- if env_type == 'dev' and item.domain_local is defined and item.domain_local != '' -%}
     {%- set domain_name = item.domain_local %}
-    {%- set server_ip = ansible_eth1.ipv4.address %}
 {%- else -%}
     {%- set domain_name = item.domain %}
-    {%- set server_ip = ansible_eth0.ipv4.address %}
 {%- endif -%}
 server {
     listen {{ nginx_port }};
@@ -30,9 +28,9 @@ server {
     access_log /home/{{ user }}/server/{{ item.directory }}/nginx-access.log;
 }
 
-server {
-    listen {{ nginx_port }};
-    server_name {{ server_ip }};
-
-    return 301 $scheme://www.{{ domain_name }}$request_uri;
-}
+#server {
+#    listen 80;
+#    server_name 127.0.0.1;
+#
+#    return 301 $scheme://www.dev.local$request_uri;
+#}
