@@ -4,7 +4,7 @@
 
 - install vagrant
 - install vagrant-vbguest plugin
-- install VirtualBox 5.0 (Do not install version 5.1)
+- install VirtualBox 5.0+
 - install ansible
 - install NFS support
 
@@ -18,10 +18,10 @@ ansible-playbook -i env/prod/main.ini setup_server.yml -u root --ask-pass
 
 > Add this line in your `/etc/hosts` file:
 > ```
-> 10.10.4.70 cash.local
+> 10.10.5.60 dev.local
 > ```
 >
-> And then it will be avaible in browser at: [http://cash.local](http://cash.local)
+> And then it will be avaible in browser at: [http://dev.local](http://dev.local)
 
 ## Setup environment on Ubuntu 
 

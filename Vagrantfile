@@ -1,6 +1,6 @@
 VM_IP = '10.10.5.60'
-VM_NAME = 'kraken.local'
-VM_RAM = 2000
+VM_NAME = 'dev.local'
+VM_RAM = 2048
 VM_CPUS = 2
 SYNC_TYPE = 'nfs'
 SSH_PORT = 10560
