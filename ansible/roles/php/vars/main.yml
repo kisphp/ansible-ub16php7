@@ -11,6 +11,7 @@ php_apt_modules:
   - php7.0-fpm
   - php7.0-mysql
   - php7.0-gd
+  - php7.0-xml
   - php7.0-mcrypt
   - php-xdebug
 
