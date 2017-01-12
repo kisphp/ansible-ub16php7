@@ -1,20 +1,15 @@
 apache2_apt_modules:
   - apache2
-  - apache2-doc
   - apache2-utils
-  - libapache2-mod-fcgid
-
-apache2_apt_php5_modules:
-  - libapache2-mod-php5.6
-
-apache2_apt_php7_modules:
   - libapache2-mod-php7.0
+#  - apache2-doc
+#  - libapache2-mod-fcgid
 
 apache2_modules:
   - rewrite
-  - proxy
-  - proxy_http
+#  - proxy
+#  - proxy_http
   - headers
-  - actions
+#  - actions
   - alias
-  - ssl
+#  - ssl

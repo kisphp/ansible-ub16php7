@@ -1,8 +1,8 @@
 project:
   - {
     repository: "git@github.com:symfony/symfony-standard.git",
-    directory: "symfony.ro",
-    domain: "symfony.ro",
+    directory: "symfony.local",
+    domain: "symfony.local",
     domain_local: "symfony.local"
   }
 
@@ -22,9 +22,7 @@ nodejs_version: "6.x"
 nginx_port: 80
 apache_port: 80
 
-php_version: 7
-
-webserver_name: nginx
+webserver_name: apache2
 
 cron_mail_to: ~
 crontab: ~

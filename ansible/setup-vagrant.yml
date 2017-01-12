@@ -18,10 +18,10 @@
     - { role: ssh }
     - { role: oh-my-zsh }
     - { role: nodejs }
+    - { role: "{{ webserver_name }}" }
     - { role: php }
     - { role: composer }
     - { role: kisphp }
     - { role: redis }
-    - { role: "{{ webserver_name }}" }
     - { role: mysql }
     - { role: project }
