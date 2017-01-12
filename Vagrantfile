@@ -1,6 +1,6 @@
 VM_IP = '10.10.5.60'
 VM_NAME = 'dev.local'
-VM_RAM = 2048
+VM_RAM = 4000
 VM_CPUS = 2
 SYNC_TYPE = 'nfs'
 SSH_PORT = 10560
@@ -10,8 +10,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "ubuntu/xenial64" # ubuntu 16
     config.vm.hostname = VM_NAME
-    config.vm.synced_folder "./ansible", "/home/vagrant/ansible", type: SYNC_TYPE
-    config.vm.synced_folder "./server", "/home/vagrant/server", type: SYNC_TYPE, create: true
+    config.vm.synced_folder "./ansible", "/home/ubuntu/ansible", type: SYNC_TYPE
+    config.vm.synced_folder "./server", "/home/ubuntu/server", type: SYNC_TYPE, create: true
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
     config.vm.network :private_network, ip: VM_IP

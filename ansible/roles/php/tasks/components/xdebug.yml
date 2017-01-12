@@ -9,17 +9,32 @@
   when: php_xdebug_enabled == True
 
 - name: "Enable Apache XDEBUG"
-  file: src="/etc/php/7.0/mods-available/xdebug.ini" dest="/etc/php/7.0/apache2/conf.d/20-xdebug.ini" owner=root group=root state=link
+  file:
+    src="/etc/php/7.0/mods-available/xdebug.ini"
+    dest="/etc/php/7.0/apache2/conf.d/20-xdebug.ini"
+    owner=root
+    group=root
+    state=link
   when: php_xdebug_enabled == True and webserver_name == 'apache2'
   ignore_errors: true
 
 - name: "Enable CLI XDEBUG"
-  file: src="/etc/php/7.0/mods-available/xdebug.ini" dest="/etc/php/7.0/cli/conf.d/20-xdebug.ini" owner=root group=root state=link
+  file:
+    src="/etc/php/7.0/mods-available/xdebug.ini"
+    dest="/etc/php/7.0/cli/conf.d/20-xdebug.ini"
+    owner=root
+    group=root
+    state=link
   when: php_xdebug_enabled == True
   ignore_errors: true
 
 - name: "Enable FPM XDEBUG"
-  file: src="/etc/php/7.0/mods-available/xdebug.ini" dest="/etc/php/7.0/fpm/conf.d/20-xdebug.ini" owner=root group=root state=link
+  file:
+    src="/etc/php/7.0/mods-available/xdebug.ini"
+    dest="/etc/php/7.0/fpm/conf.d/20-xdebug.ini"
+    owner=root
+    group=root
+    state=link
   when: php_xdebug_enabled == True
   ignore_errors: true
 

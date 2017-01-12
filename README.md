@@ -77,7 +77,7 @@ sudo apt install nfs-kernel-server
 
 ### glone git repository on desktop
 ```bash
-git clone git@github.com:kisphp/ansible-php-5.6.git ~/Desktop/www
+git clone git@github.com:kisphp/ansible-ub16php7.git ~/Desktop/www
 ```
 
 ### go to project directory
@@ -88,29 +88,4 @@ cd ~/Desktop/www
 ### run vagrant up
 ```bash
 vagrant up
-```
-
-
-
-
-
-## Setup local server from inside VM
-
-```bash
-cd ansible
-
-# only for ubuntu/debian
-./install-ansible.sh
-
-ansible-playbook -i env/dev/main.ini setup_local.yml
-```
-
-## Install ansible inside VM
-
-```bash
-vagrant ssh
-
-cd ansible
-
-./install-ansible.sh
 ```

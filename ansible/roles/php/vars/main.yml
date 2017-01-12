@@ -1,24 +1,82 @@
 php7_fpm_service_name: "php7.0-fpm"
 
+php_ppa: "ppa:ondrej/php"
+
 php_apt_modules:
-  - php7.0
   - php7.0-common
-  - php7.0-gd
+  - php7.0-cli
+  - php7.0-intl
+  - php7.0-curl
+  - php7.0-cgi
   - php7.0-fpm
   - php7.0-mysql
-  - php7.0-imap
-  - php7.0-cgi
-  - php-pear
-  - php-auth
+  - php7.0-gd
   - php7.0-mcrypt
-  - php7.0-curl
-  - php7.0-intl
-  - php7.0-tidy
-  - php7.0-xmlrpc
-  - php7.0-xsl
   - php-xdebug
-  - snmp
-  - phpunit
+
+#  - php7.0
+#  - memcached
+#  - mcrypt
+#  - php7.0
+#  - php7.0-fpm
+#  - php7.0-mysql
+#  - php7.0-cli
+#  - php7.0-curl
+#  - php7.0-fpm
+#  - php7.0-intl
+#  - php7.0-json
+#  - php7.0-mcrypt
+#  - php7.0-cgi
+#  - php7.0-dev
+#  - php7.0-common
+#  - php7.0-gd
+#  - php7.0-mysql
+#  - php7.0-tidy
+#  - php7.0-memcached
+#  - php-xdebug
+#  - php7.0-xml
+#  - php7.0-dom
+#  - php7.0-gd
+#  - php7.0-mbstring
+#  - php7.0-zip
+#  - sendmail
+
+#  - php7.0-mysql
+#  - php7.0-curl
+#  - php7.0-gd
+#  - php7.0-intl
+#  - php-pear
+#  - php-imagick
+#  - php7.0-imap
+#  - php7.0-mcrypt
+#  - php-memcache
+#  - php7.0-pspell
+#  - php7.0-recode
+#  - php7.0-sqlite3
+#  - php7.0-tidy
+#  - php7.0-xmlrpc
+#  - php7.0-xsl
+#  - php7.0-mbstring
+#  - php-gettext
+
+#  - php7.0
+#  - php7.0-common
+#  - php7.0-gd
+#  - php7.0-fpm
+#  - php7.0-mysql
+#  - php7.0-imap
+#  - php7.0-cgi
+#  - php-pear
+#  - php-auth
+#  - php7.0-mcrypt
+#  - php7.0-curl
+#  - php7.0-intl
+#  - php7.0-tidy
+#  - php7.0-xmlrpc
+#  - php7.0-xsl
+#  - php-xdebug
+#  - snmp
+#  - phpunit
 
 php_ini_fpm_short_open_tag: Off
 php_ini_fpm_asp_tags: Off

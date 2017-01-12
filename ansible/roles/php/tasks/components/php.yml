@@ -1,7 +1,7 @@
 ---
-- name: "Install apache support"
-  apt: name=libapache2-mod-php
-  when: webserver_name == 'apache2'
+- name: "Add repository for Ubuntu"
+  become: true
+  apt_repository: repo={{ php_ppa }}
 
 - name: "Install PHP 7 packages"
   apt: name={{ item }} update_cache=yes state=latest
