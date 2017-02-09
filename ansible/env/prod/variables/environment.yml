@@ -10,7 +10,7 @@ env_type: prod
 # php xdebug settings
 php_xdebug_enabled: False
 
-server_timezone: Europe/Bucharest
+server_timezone: Europe/Berlin
 
 #  ini_path: php5/php.ini
 php_xdebug_enabled: False
@@ -26,9 +26,9 @@ mysql_settings_host_connect: "localhost"
 mysql_enable_mysql_log: False
 
 mysql_db_host: localhost
-mysql_db_user: cashordigital_u53r
-mysql_db_pass: mariusbogdan83
-mysql_db_name: cashordigital_main
+mysql_db_user: root_user
+mysql_db_pass: root_pass
+mysql_db_name: db_name
 
 crontab:
   - {
@@ -48,13 +48,4 @@ crontab:
     month: "*",
     weekday: "1,4",
     job: "/bin/bash /home/web/server/git.global.bkp.sh"
-  }
-  - {
-    name: "Trigger newsletter send",
-    minute: "0",
-    hour: "*",
-    day: "*",
-    month: "*",
-    weekday: "*",
-    job: "/usr/bin/php /home/web/psihologiecuantica.ro/app/console nl:send"
   }
